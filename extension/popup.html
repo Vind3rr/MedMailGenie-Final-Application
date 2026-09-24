@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -11,41 +12,38 @@
 
     <title>MedMail Genie</title>
 
-    <!-- Main stylesheet -->
-    <link rel="stylesheet" href="popup.css">
+    <!-- Main MedMail Genie stylesheet -->
+    <link
+        rel="stylesheet"
+        href="popup.css"
+    >
+
 </head>
 
 
 <body>
 
-    <!-- ========================================= -->
-    <!-- MedMail Genie Application                 -->
-    <!-- ========================================= -->
+    <!-- ===================================== -->
+    <!-- Main Application                      -->
+    <!-- ===================================== -->
 
     <main class="app">
 
 
-        <!-- ===================================== -->
-        <!-- Header / Branding                     -->
-        <!-- ===================================== -->
+        <!-- ================================= -->
+        <!-- Header                            -->
+        <!-- ================================= -->
 
         <header class="header">
 
             <div class="brand">
 
-                <!--
-                    MedMail Genie logo.
-
-                    Image location:
-                    extension/assets/medmail-genie-logo.png
-                -->
                 <img
                     src="assets/medmail-genie-logo.png"
                     alt="MedMail Genie"
                     class="brand-logo"
                 >
 
-                <!-- Small description underneath -->
                 <p class="brand-subtitle">
                     Intelligent Email Assistant
                 </p>
@@ -53,8 +51,8 @@
             </div>
 
 
-            <!-- Settings button -->
             <button
+                type="button"
                 class="icon-button"
                 id="settingsButton"
                 aria-label="Settings"
@@ -67,9 +65,99 @@
 
 
 
-        <!-- ===================================== -->
-        <!-- Inbox Insights                        -->
-        <!-- ===================================== -->
+        <!-- ================================= -->
+        <!-- Prototype Inbox                   -->
+        <!-- ================================= -->
+
+        <section class="card">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        PROTOTYPE INBOX
+                    </span>
+
+                    <h2>
+                        Select Email
+                    </h2>
+
+                </div>
+
+
+                <span class="demo-badge">
+                    Synthetic Data
+                </span>
+
+            </div>
+
+
+            <!--
+                JavaScript automatically creates
+                the email options inside this list.
+            -->
+
+            <select
+                id="emailSelector"
+                class="email-selector"
+                aria-label="Select prototype email"
+            >
+            </select>
+
+
+            <!-- Selected email -->
+
+            <div class="selected-email">
+
+                <div class="email-sender-row">
+
+                    <div>
+
+                        <strong id="selectedSender">
+                            Loading...
+                        </strong>
+
+                        <span
+                            class="sender-role"
+                            id="selectedSenderRole"
+                        >
+                            Loading...
+                        </span>
+
+                    </div>
+
+
+                    <span
+                        class="email-time"
+                        id="selectedEmailTime"
+                    >
+                    </span>
+
+                </div>
+
+
+                <h3 id="selectedSubject">
+                    Loading email...
+                </h3>
+
+
+                <p
+                    class="email-preview"
+                    id="selectedEmailBody"
+                >
+                    Loading synthetic email...
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================================= -->
+        <!-- Inbox Insights                    -->
+        <!-- ================================= -->
 
         <section class="card">
 
@@ -88,25 +176,24 @@
                 </div>
 
 
-                <!-- Mock status -->
                 <span class="status-badge">
-                    Live
+                    Prototype
                 </span>
 
             </div>
 
 
-
-            <!-- ================================= -->
-            <!-- Email Statistics                  -->
-            <!-- ================================= -->
+            <!-- Inbox statistics -->
 
             <div class="stats">
 
                 <div class="stat">
 
-                    <span class="stat-number">
-                        24
+                    <span
+                        class="stat-number"
+                        id="totalEmails"
+                    >
+                        0
                     </span>
 
                     <span class="stat-label">
@@ -118,8 +205,11 @@
 
                 <div class="stat">
 
-                    <span class="stat-number">
-                        5
+                    <span
+                        class="stat-number"
+                        id="priorityEmails"
+                    >
+                        0
                     </span>
 
                     <span class="stat-label">
@@ -131,8 +221,11 @@
 
                 <div class="stat">
 
-                    <span class="stat-number">
-                        8
+                    <span
+                        class="stat-number"
+                        id="unreadEmails"
+                    >
+                        0
                     </span>
 
                     <span class="stat-label">
@@ -144,34 +237,32 @@
             </div>
 
 
-
-            <!-- ================================= -->
-            <!-- Highest Priority Email            -->
-            <!-- ================================= -->
+            <!-- Highest priority email -->
 
             <div class="priority-email">
 
                 <div class="priority-header">
 
                     <span class="priority-badge">
-                        HIGH PRIORITY
+                        TOP PRIORITY
                     </span>
 
-                    <span class="email-time">
-                        10:42 AM
+                    <span
+                        class="email-time"
+                        id="topPriorityTime"
+                    >
                     </span>
 
                 </div>
 
 
-                <h3>
-                    Delivery Delay — Pharmacy Order
+                <h3 id="topPrioritySubject">
+                    Loading...
                 </h3>
 
 
-                <p>
-                    Pharmacy team is requesting an urgent
-                    update regarding delayed stock.
+                <p id="topPriorityDescription">
+                    Loading inbox information...
                 </p>
 
             </div>
@@ -180,9 +271,9 @@
 
 
 
-        <!-- ===================================== -->
-        <!-- Email Summary                         -->
-        <!-- ===================================== -->
+        <!-- ================================= -->
+        <!-- AI Analysis                       -->
+        <!-- ================================= -->
 
         <section class="card">
 
@@ -192,32 +283,77 @@
 
 
             <h2>
-                Email Summary
+                Email Analysis
             </h2>
 
 
-            <!--
-                This is currently mock data.
+            <!-- Category and priority -->
 
-                Later the LLM will generate this
-                summary from the selected email.
-            -->
-            <p class="summary">
+            <div class="analysis-grid">
 
-                The pharmacy is requesting an update on a
-                delayed delivery. The stock is required
-                urgently and the sender would like
-                confirmation of the expected delivery time.
 
-            </p>
+                <!-- Category -->
+
+                <div class="analysis-item">
+
+                    <span class="analysis-label">
+                        Category
+                    </span>
+
+                    <span
+                        class="category-value"
+                        id="emailCategory"
+                    >
+                        Loading...
+                    </span>
+
+                </div>
+
+
+                <!-- Priority -->
+
+                <div class="analysis-item">
+
+                    <span class="analysis-label">
+                        Priority
+                    </span>
+
+                    <span
+                        class="priority-value"
+                        id="emailPriority"
+                    >
+                        Loading...
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Summary -->
+
+            <div class="summary-container">
+
+                <span class="analysis-label">
+                    Summary
+                </span>
+
+                <p
+                    class="summary"
+                    id="emailSummary"
+                >
+                    Loading email analysis...
+                </p>
+
+            </div>
 
         </section>
 
 
 
-        <!-- ===================================== -->
-        <!-- AI Draft Reply                        -->
-        <!-- ===================================== -->
+        <!-- ================================= -->
+        <!-- AI Draft Reply                    -->
+        <!-- ================================= -->
 
         <section class="card">
 
@@ -229,7 +365,6 @@
                         ASSISTANT
                     </span>
 
-
                     <h2>
                         Draft Reply
                     </h2>
@@ -237,39 +372,35 @@
                 </div>
 
 
-                <span class="ai-badge">
+                <span
+                    class="ai-badge"
+                    id="draftStatus"
+                >
                     AI Generated
                 </span>
 
             </div>
 
 
-
             <!--
-                Editable AI-generated response.
+                Editable draft.
 
-                The user remains in control and can
-                edit the response before approving it.
+                The user can review and modify
+                this text before approving it.
             -->
+
             <textarea
                 id="draftReply"
                 aria-label="AI generated draft reply"
-            >Hi Sarah,
-
-Thank you for contacting us. We are currently reviewing the delayed delivery and will provide you with an updated estimated delivery time as soon as possible.
-
-Kind regards,
-Sigma Healthcare</textarea>
+            ></textarea>
 
 
-
-            <!-- ================================= -->
-            <!-- Draft Controls                    -->
-            <!-- ================================= -->
+            <!-- Draft controls -->
 
             <div class="button-row">
 
                 <button
+                    type="button"
                     class="secondary-button"
                     id="regenerateButton"
                 >
@@ -278,6 +409,7 @@ Sigma Healthcare</textarea>
 
 
                 <button
+                    type="button"
                     class="primary-button"
                     id="approveButton"
                 >
@@ -287,8 +419,10 @@ Sigma Healthcare</textarea>
             </div>
 
 
-            <!-- Human-in-the-loop reminder -->
-            <p class="review-note">
+            <p
+                class="review-note"
+                id="reviewMessage"
+            >
                 Review and edit AI-generated content before approval.
             </p>
 
@@ -296,9 +430,9 @@ Sigma Healthcare</textarea>
 
 
 
-        <!-- ===================================== -->
-        <!-- Voice Assistant                       -->
-        <!-- ===================================== -->
+        <!-- ================================= -->
+        <!-- Voice Assistant                   -->
+        <!-- ================================= -->
 
         <section class="card">
 
@@ -314,8 +448,8 @@ Sigma Healthcare</textarea>
 
             <div class="voice-buttons">
 
-                <!-- Future Speech-to-Text -->
                 <button
+                    type="button"
                     class="voice-button"
                     id="listenButton"
                 >
@@ -323,8 +457,8 @@ Sigma Healthcare</textarea>
                 </button>
 
 
-                <!-- Future Text-to-Speech -->
                 <button
+                    type="button"
                     class="voice-button"
                     id="readButton"
                 >
@@ -333,13 +467,35 @@ Sigma Healthcare</textarea>
 
             </div>
 
+
+            <p
+                class="voice-status"
+                id="voiceStatus"
+            >
+                Voice assistant ready
+            </p>
+
         </section>
 
 
 
-        <!-- ===================================== -->
-        <!-- Footer                                -->
-        <!-- ===================================== -->
+        <!-- ================================= -->
+        <!-- Notification Area                 -->
+        <!-- ================================= -->
+
+        <div
+            class="notification"
+            id="notification"
+            role="status"
+            aria-live="polite"
+        >
+        </div>
+
+
+
+        <!-- ================================= -->
+        <!-- Footer                            -->
+        <!-- ================================= -->
 
         <footer class="footer">
 
@@ -352,13 +508,25 @@ Sigma Healthcare</textarea>
             </span>
 
             <span>
-                Prototype v1
+                Prototype v2
             </span>
 
         </footer>
 
-
     </main>
+
+
+    <!--
+        IMPORTANT:
+
+        Synthetic email data must load BEFORE
+        popup.js because popup.js uses the
+        mockEmails array.
+    -->
+
+    <script src="data/mockEmails.js"></script>
+
+    <script src="popup.js"></script>
 
 </body>
 

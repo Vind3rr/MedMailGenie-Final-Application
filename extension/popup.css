@@ -1,11 +1,11 @@
 /* ========================================= */
 /* MedMail Genie                             */
-/* Chrome Extension UI Prototype v1          */
+/* Chrome Extension Prototype v2             */
 /* ========================================= */
 
 
 /* ========================================= */
-/* Global Reset                              */
+/* Global                                    */
 /* ========================================= */
 
 * {
@@ -37,7 +37,8 @@ body {
 
 
 button,
-textarea {
+textarea,
+select {
     font: inherit;
 }
 
@@ -60,8 +61,6 @@ textarea {
 /* ========================================= */
 
 .header {
-    position: relative;
-
     display: flex;
 
     justify-content: space-between;
@@ -85,16 +84,6 @@ textarea {
 }
 
 
-
-/*
-    Compact logo container.
-
-    The previous logo was taking up almost
-    the entire popup.
-
-    This version limits the amount of
-    vertical space used by the branding.
-*/
 .brand-logo {
     display: block;
 
@@ -107,11 +96,6 @@ textarea {
 }
 
 
-
-/*
-    Smaller subtitle so it does not compete
-    visually with the MedMail Genie logo.
-*/
 .brand-subtitle {
     margin: 2px 0 0;
 
@@ -233,6 +217,141 @@ textarea {
 
 
 /* ========================================= */
+/* Prototype / Demo Badge                    */
+/* ========================================= */
+
+.demo-badge {
+    flex-shrink: 0;
+
+    padding: 4px 7px;
+
+    border-radius: 20px;
+
+    background: #f0eef9;
+
+    color: #65558f;
+
+    font-size: 8px;
+    font-weight: 700;
+}
+
+
+
+/* ========================================= */
+/* Email Selector                            */
+/* ========================================= */
+
+.email-selector {
+    width: 100%;
+
+    margin-bottom: 12px;
+
+    padding: 9px 10px;
+
+    border: 1px solid #d7e0e2;
+    border-radius: 8px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #35464c;
+
+    font-size: 11px;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.email-selector:focus {
+    border-color: #467983;
+
+    box-shadow:
+        0 0 0 3px rgba(70, 121, 131, 0.10);
+}
+
+
+
+/* ========================================= */
+/* Selected Email                            */
+/* ========================================= */
+
+.selected-email {
+    padding: 11px;
+
+    border: 1px solid #e2e8ea;
+    border-radius: 9px;
+
+    background: #f8fafb;
+}
+
+
+.email-sender-row {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: flex-start;
+
+    gap: 10px;
+}
+
+
+.email-sender-row strong {
+    display: block;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    color: #35464c;
+}
+
+
+.sender-role {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 9px;
+
+    color: #819096;
+}
+
+
+.selected-email h3 {
+    margin: 9px 0 6px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    color: #26383e;
+}
+
+
+.email-preview {
+    max-height: 105px;
+
+    margin: 0;
+
+    padding-right: 4px;
+
+    overflow-y: auto;
+
+    white-space: pre-line;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+
+    color: #69777d;
+}
+
+
+
+/* ========================================= */
 /* Inbox Statistics                          */
 /* ========================================= */
 
@@ -281,7 +400,28 @@ textarea {
 
 
 /* ========================================= */
-/* Priority Email                            */
+/* Inbox Status                              */
+/* ========================================= */
+
+.status-badge {
+    flex-shrink: 0;
+
+    padding: 4px 7px;
+
+    border-radius: 20px;
+
+    background: #e6f4ef;
+
+    color: #28715a;
+
+    font-size: 8px;
+    font-weight: 700;
+}
+
+
+
+/* ========================================= */
+/* Top Priority Email                        */
 /* ========================================= */
 
 .priority-email {
@@ -315,6 +455,8 @@ textarea {
 
 
 .email-time {
+    flex-shrink: 0;
+
     font-size: 9px;
 
     color: #8a9599;
@@ -344,31 +486,47 @@ textarea {
 
 
 /* ========================================= */
-/* Status Badges                             */
+/* AI Analysis                               */
 /* ========================================= */
 
-.status-badge,
-.ai-badge {
-    flex-shrink: 0;
+.analysis-grid {
+    display: grid;
 
-    padding: 4px 7px;
+    grid-template-columns: 1fr 1fr;
 
-    border-radius: 20px;
+    gap: 8px;
+
+    margin-bottom: 12px;
+}
+
+
+.analysis-item {
+    padding: 9px;
+
+    background: #f6f9fa;
+
+    border: 1px solid #edf2f3;
+    border-radius: 8px;
+}
+
+
+.analysis-label {
+    display: block;
+
+    margin-bottom: 4px;
 
     font-size: 8px;
     font-weight: 700;
+
+    letter-spacing: 0.6px;
+
+    color: #829096;
 }
 
 
-.status-badge {
-    background: #e6f4ef;
-
-    color: #28715a;
-}
-
-
-.ai-badge {
-    background: #e9f1f3;
+.category-value {
+    font-size: 10px;
+    font-weight: 600;
 
     color: #315f68;
 }
@@ -376,8 +534,51 @@ textarea {
 
 
 /* ========================================= */
-/* Email Summary                             */
+/* Priority Labels                           */
 /* ========================================= */
+
+.priority-value {
+    display: inline-block;
+
+    padding: 3px 7px;
+
+    border-radius: 20px;
+
+    font-size: 9px;
+    font-weight: 700;
+}
+
+
+.priority-high {
+    background: #fdebea;
+
+    color: #a53e32;
+}
+
+
+.priority-medium {
+    background: #fff3d9;
+
+    color: #8a6517;
+}
+
+
+.priority-low {
+    background: #e6f4ef;
+
+    color: #28715a;
+}
+
+
+
+/* ========================================= */
+/* Summary                                   */
+/* ========================================= */
+
+.summary-container {
+    padding-top: 2px;
+}
+
 
 .summary {
     margin: 0;
@@ -387,6 +588,34 @@ textarea {
     line-height: 1.6;
 
     color: #56676e;
+}
+
+
+
+/* ========================================= */
+/* AI Status Badge                           */
+/* ========================================= */
+
+.ai-badge {
+    flex-shrink: 0;
+
+    padding: 4px 7px;
+
+    border-radius: 20px;
+
+    background: #e9f1f3;
+
+    color: #315f68;
+
+    font-size: 8px;
+    font-weight: 700;
+}
+
+
+.ai-badge.approved {
+    background: #e6f4ef;
+
+    color: #28715a;
 }
 
 
@@ -492,6 +721,17 @@ textarea:focus {
 }
 
 
+.primary-button:disabled {
+    border-color: #5c8b77;
+
+    background: #5c8b77;
+
+    cursor: default;
+
+    opacity: 1;
+}
+
+
 
 /* ========================================= */
 /* Regenerate Button                         */
@@ -570,6 +810,56 @@ textarea:focus {
 
 .voice-button:active {
     transform: scale(0.98);
+}
+
+
+.voice-button.listening {
+    border-color: #174f59;
+
+    background: #174f59;
+
+    color: #ffffff;
+}
+
+
+.voice-status {
+    margin: 9px 0 0;
+
+    text-align: center;
+
+    font-size: 9px;
+
+    color: #8b969a;
+}
+
+
+
+/* ========================================= */
+/* Notifications                             */
+/* ========================================= */
+
+.notification {
+    display: none;
+
+    margin-bottom: 12px;
+
+    padding: 10px 12px;
+
+    border: 1px solid #cfe0e3;
+    border-radius: 9px;
+
+    background: #eef6f7;
+
+    color: #315f68;
+
+    font-size: 10px;
+
+    line-height: 1.4;
+}
+
+
+.notification.show {
+    display: block;
 }
 
 
