@@ -1,0 +1,9 @@
+{
+  "manifest_version": 3,
+  "name": "MedMail Genie",
+  "version": "1.0.0",
+  "description": "An intelligent email assistant with voice interaction for Sigma Healthcare.",
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
