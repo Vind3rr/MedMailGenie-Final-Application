@@ -1,17 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>MedMail Genie</title>
+
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="popup.css">
 </head>
+
 
 <body>
 
-    <h1>MedMail Genie</h1>
+    <!-- ========================================= -->
+    <!-- MedMail Genie Application                 -->
+    <!-- ========================================= -->
 
-    <p>Extension is working!</p>
+    <main class="app">
+
+
+        <!-- ===================================== -->
+        <!-- Header / Branding                     -->
+        <!-- ===================================== -->
+
+        <header class="header">
+
+            <div class="brand">
+
+                <!--
+                    MedMail Genie logo.
+
+                    Image location:
+                    extension/assets/medmail-genie-logo.png
+                -->
+                <img
+                    src="assets/medmail-genie-logo.png"
+                    alt="MedMail Genie"
+                    class="brand-logo"
+                >
+
+                <!-- Small description underneath -->
+                <p class="brand-subtitle">
+                    Intelligent Email Assistant
+                </p>
+
+            </div>
+
+
+            <!-- Settings button -->
+            <button
+                class="icon-button"
+                id="settingsButton"
+                aria-label="Settings"
+                title="Settings"
+            >
+                ⚙
+            </button>
+
+        </header>
+
+
+
+        <!-- ===================================== -->
+        <!-- Inbox Insights                        -->
+        <!-- ===================================== -->
+
+        <section class="card">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        INBOX
+                    </span>
+
+                    <h2>
+                        Inbox Insights
+                    </h2>
+
+                </div>
+
+
+                <!-- Mock status -->
+                <span class="status-badge">
+                    Live
+                </span>
+
+            </div>
+
+
+
+            <!-- ================================= -->
+            <!-- Email Statistics                  -->
+            <!-- ================================= -->
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <span class="stat-number">
+                        24
+                    </span>
+
+                    <span class="stat-label">
+                        Emails
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span class="stat-number">
+                        5
+                    </span>
+
+                    <span class="stat-label">
+                        Priority
+                    </span>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span class="stat-number">
+                        8
+                    </span>
+
+                    <span class="stat-label">
+                        Unread
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ================================= -->
+            <!-- Highest Priority Email            -->
+            <!-- ================================= -->
+
+            <div class="priority-email">
+
+                <div class="priority-header">
+
+                    <span class="priority-badge">
+                        HIGH PRIORITY
+                    </span>
+
+                    <span class="email-time">
+                        10:42 AM
+                    </span>
+
+                </div>
+
+
+                <h3>
+                    Delivery Delay — Pharmacy Order
+                </h3>
+
+
+                <p>
+                    Pharmacy team is requesting an urgent
+                    update regarding delayed stock.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ===================================== -->
+        <!-- Email Summary                         -->
+        <!-- ===================================== -->
+
+        <section class="card">
+
+            <span class="eyebrow">
+                AI ANALYSIS
+            </span>
+
+
+            <h2>
+                Email Summary
+            </h2>
+
+
+            <!--
+                This is currently mock data.
+
+                Later the LLM will generate this
+                summary from the selected email.
+            -->
+            <p class="summary">
+
+                The pharmacy is requesting an update on a
+                delayed delivery. The stock is required
+                urgently and the sender would like
+                confirmation of the expected delivery time.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- ===================================== -->
+        <!-- AI Draft Reply                        -->
+        <!-- ===================================== -->
+
+        <section class="card">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        ASSISTANT
+                    </span>
+
+
+                    <h2>
+                        Draft Reply
+                    </h2>
+
+                </div>
+
+
+                <span class="ai-badge">
+                    AI Generated
+                </span>
+
+            </div>
+
+
+
+            <!--
+                Editable AI-generated response.
+
+                The user remains in control and can
+                edit the response before approving it.
+            -->
+            <textarea
+                id="draftReply"
+                aria-label="AI generated draft reply"
+            >Hi Sarah,
+
+Thank you for contacting us. We are currently reviewing the delayed delivery and will provide you with an updated estimated delivery time as soon as possible.
+
+Kind regards,
+Sigma Healthcare</textarea>
+
+
+
+            <!-- ================================= -->
+            <!-- Draft Controls                    -->
+            <!-- ================================= -->
+
+            <div class="button-row">
+
+                <button
+                    class="secondary-button"
+                    id="regenerateButton"
+                >
+                    ↻ Regenerate
+                </button>
+
+
+                <button
+                    class="primary-button"
+                    id="approveButton"
+                >
+                    ✓ Approve
+                </button>
+
+            </div>
+
+
+            <!-- Human-in-the-loop reminder -->
+            <p class="review-note">
+                Review and edit AI-generated content before approval.
+            </p>
+
+        </section>
+
+
+
+        <!-- ===================================== -->
+        <!-- Voice Assistant                       -->
+        <!-- ===================================== -->
+
+        <section class="card">
+
+            <span class="eyebrow">
+                VOICE ASSISTANT
+            </span>
+
+
+            <h2>
+                Voice Controls
+            </h2>
+
+
+            <div class="voice-buttons">
+
+                <!-- Future Speech-to-Text -->
+                <button
+                    class="voice-button"
+                    id="listenButton"
+                >
+                    🎙 Start Listening
+                </button>
+
+
+                <!-- Future Text-to-Speech -->
+                <button
+                    class="voice-button"
+                    id="readButton"
+                >
+                    🔊 Read Reply
+                </button>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ===================================== -->
+        <!-- Footer                                -->
+        <!-- ===================================== -->
+
+        <footer class="footer">
+
+            <span>
+                MedMail Genie
+            </span>
+
+            <span class="footer-dot">
+                •
+            </span>
+
+            <span>
+                Prototype v1
+            </span>
+
+        </footer>
+
+
+    </main>
 
 </body>
+
 </html>
